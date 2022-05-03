@@ -1,6 +1,6 @@
 #EXO
 ###
-
+import random
 import re
 from traceback import print_tb
 
@@ -361,8 +361,8 @@ def tri_bulles(T):
                 T[j+1] = temp
     return T
 
-random.randint(1,10)
-print(tri_bulles([random.randint(1,10) for i in range(0,10)]))
+"""print(tri_bulles([random.randint(1,10) for i in range(0,10)]))"""
+
 ###
 
 def pascal(n):
@@ -390,5 +390,81 @@ def rendu_glouton(arendre, solution=[], i=0):
         return rendu_glouton(arendre, solution,i+1)
 
 "print(rendu_glouton(68,[],0))"
+###
 
+def insere(a, tab):
+    l = list(tab) #l contient les mêmes éléments que tab
+    l.append(a)
+    i = len(l)-2
+    while a < l[i] and i >= 0:
+        l[i+1] = l[i]
+        l[i] = a
+        i -=1
+    return l
+
+"print(insere(3,[1,2,4,5]))"
+###
+
+def est_parfait(mot) :
+    #mot est une chaîne de caractères (en lettres majuscules)
+    dico = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, \
+    "H":8, "I":9, "J":10, "K":11, "L":12, "M":13, \
+    "N":14, "O":15, "P":16, "Q":17, "R":18, "S":19, \
+    "T":20, "U":21,"V":22, "W":23, "X":24, "Y":25, "Z":26}
+    code_c = ""
+    code_a = 0
+    for c in mot :
+        code_c += str(dico[c])
+        code_a += dico[c]
+    code_c = int(code_c)
+    if code_c%code_a==0 :
+        mot_est_parfait = True
+    else :
+        mot_est_parfait = False
+    return [code_a, code_c, mot_est_parfait]
+
+'print(est_parfait("ALAIN"))'
+###
+
+ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+def position_alphabet(lettre):
+    return ALPHABET.find(lettre)
+
+def cesar(message, decalage):
+    resultat = ''
+    for lettre in message:
+        if lettre in ALPHABET:
+            indice = (position_alphabet(lettre) + decalage) % 26
+            resultat += ALPHABET[indice]
+        else:
+            resultat += lettre
+    return resultat
+
+"print(cesar('WR FNVF DHV GH RF !',13))"
+###
+
+def binaire(a):
+    bin_a = str(a%2)
+    a = a // 2
+    while a !=0 :
+        bin_a += str(a%2)
+        a //=2
+    return bin_a
+
+'print( binaire(77))'
+###
+
+def multiplication(n1, n2):
+    if n1 < 0:
+        return multiplication(-n1, n2)
+    if n2 < 0:
+        return multiplication(n1, -n2)
+    resultat = 0
+    for i in range(n2):
+        resultat += n1
+    return resultat
+
+'print(multiplication(-2,6))'
+###
 
